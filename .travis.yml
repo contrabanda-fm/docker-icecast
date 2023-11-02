@@ -1,9 +1,0 @@
-sudo: required
-services:
-  - docker
-before_install:
-  - docker build -t icecast .
-  - docker run --name icecast -d -p 8000:8000 icecast
-script:
-  - docker ps -a
-  - docker exec -it icecast cat /etc/icecast.xml
