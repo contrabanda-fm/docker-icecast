@@ -12,6 +12,9 @@ RUN apk add --update \
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Create the log directory and grant permissions to the icecast user
+RUN mkdir -p /var/log/icecast && chown -R icecast:icecast /var/log/icecast
+
 EXPOSE 8000
 VOLUME ["/var/log/icecast"]
 ENTRYPOINT ["/entrypoint.sh"]
