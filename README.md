@@ -14,8 +14,6 @@ Docker image for [Icecast 2](https://icecast.org/)
 # Usage
 
 ```
-docker run -d -p 8000:8000 ghcr.io/contrabanda-fm/docker-icecast
-
 docker run \
     --name icecast \
     -e ICECAST_SOURCE_PASSWORD=sourcesecret \
