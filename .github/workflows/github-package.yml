@@ -25,15 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Log in to the Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image using default docker image tag
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           build-args: |
             IMAGE=alpine
@@ -45,7 +45,7 @@ jobs:
       # Below step only executed if action triggered manually
       - name: Build and push Docker image using input docker image tag
         if: ${{ inputs.dockerimagetag }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           build-args: |
             IMAGE=alpine
@@ -58,7 +58,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
       - name: Build and push Docker image with unique tag
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           build-args: |
             IMAGE=alpine
